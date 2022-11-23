@@ -3,7 +3,9 @@ name: Stage PR workflow
 on:
   pull_request:
     branches:
-      - main
+      - stage
+    env:
+      somevar: []
 
 jobs:
   list-products:
@@ -35,7 +37,10 @@ jobs:
           path: ${{ matrix.manifest }}
       
       - name: Save file contents
-        run: echo "::set-output name=FILELIST::${{toJson[...FILELIST, ...steps.read_file.outputs.contents]}}"
+        # run: |
+        #   export appjson='["${{steps.read_file.outputs.contents}}"]'
+        #   echo "::set-output name=matrix-json::$appjson"
+        run: echo "::set-output name=matrix-json::${{steps.read_file.outputs.contents}}"
 
       - name: File contents
         run: echo "${{ steps.read_file.outputs.contents }}"
@@ -49,6 +54,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2   
       - run: |
-          echo "${{ matrix.FILELIST }}"
+          echo "${{ matrix.manifest }}"
           
         # TODO: Trigger the workflow based on the variable repo
