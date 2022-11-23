@@ -36,7 +36,7 @@ jobs:
         with:
           path: ${{ matrix.manifest }}
       
-      - name: Save file contents
+      - name: Save file contents in
         # run: |
         #   export appjson='["${{steps.read_file.outputs.contents}}"]'
         #   echo "::set-output name=matrix-json::$appjson"
