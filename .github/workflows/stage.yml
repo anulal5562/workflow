@@ -35,7 +35,7 @@ jobs:
           path: ${{ matrix.manifest }}
       
       - name: Save file contents
-        run: echo "::set-output name=FILELIST::${{steps.read_file.outputs.contents}}"
+        run: echo "::set-output name=FILELIST::${{toJson[...FILELIST, ...steps.read_file.outputs.contents]}}"
 
       - name: File contents
         run: echo "${{ steps.read_file.outputs.contents }}"
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
         matrix:
-            manifest: ${{ fromJson(needs.read-file.outputs.FILELIST) }}
+            manifest: ${{ fromJson(needs.read-file.outputs.matrix-json) }}
     steps:
       - uses: actions/checkout@v2   
       - run: |
