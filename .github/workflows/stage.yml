@@ -3,7 +3,7 @@ name: Stage PR workflow
 on:
   pull_request:
     branches:
-      - stage
+      - main
 
 jobs:
   list-products:
