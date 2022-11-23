@@ -44,8 +44,7 @@ jobs:
         run: |
           IFS="," read -a myarray <<< ${{ steps.read_file.outputs.FILELIST }}
           for i in "${myarray[@]}"; do
-            file_path=${i}
-            cd file_path
+            run: echo "${{i}}
           done
 
   # check:
