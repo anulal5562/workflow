@@ -39,8 +39,8 @@ jobs:
       - name: Save file contents
         run: |
           script: |
-            export appjson=[...appjson, ...steps.read_file.outputs.contents]
-            echo "::set-output name=matrix-json::$appjson"
+            somevar=[...somevar, ...steps.read_file.outputs.contents]
+            echo "::set-output name=matrix-json::$somevar"
         # run: |
         #   export appjson='["${{steps.read_file.outputs.contents}}"]'
         #   echo "::set-output name=matrix-json::$appjson"
