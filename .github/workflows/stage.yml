@@ -38,14 +38,7 @@ jobs:
         run: echo "::set-output name=FILELIST::${{steps.read_file.outputs.contents}}"
 
       - name: File contents
-        run: echo "${{ steps.read_file.outputs.contents }}
-
-      # - name: Processing my found files from output
-      #   run: |
-      #     IFS="," read -a myarray <<< ${{ steps.read_file.outputs.FILELIST }}
-      #     for i in "${myarray[@]}"; do
-      #       echo "${{i}}""
-      #     done
+        run: echo "${{ steps.read_file.outputs.contents }}"
 
   check:
     needs: read-file
