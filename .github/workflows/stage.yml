@@ -49,6 +49,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2   
       - run: |
-          echo "${{ matrix.manifest }}"
+          echo "${{ matrix.FILELIST }}"
           
         # TODO: Trigger the workflow based on the variable repo
