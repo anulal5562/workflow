@@ -40,22 +40,22 @@ jobs:
       - name: File contents
         run: echo "${{ steps.read_file.outputs.contents }}
 
-      - name: Processing my found files from output
-        run: |
-          IFS="," read -a myarray <<< ${{ steps.read_file.outputs.FILELIST }}
-          for i in "${myarray[@]}"; do
-            echo "${{i}}""
-          done
+      # - name: Processing my found files from output
+      #   run: |
+      #     IFS="," read -a myarray <<< ${{ steps.read_file.outputs.FILELIST }}
+      #     for i in "${myarray[@]}"; do
+      #       echo "${{i}}""
+      #     done
 
-  # check:
-  #   needs: read-file
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #       matrix:
-  #           manifest: ${{ fromJson(needs.read-file.outputs.matrix-json) }}
-  #   steps:
-  #     - uses: actions/checkout@v2   
-  #     - run: |
-  #         echo "${{ matrix.manifest }}"
+  check:
+    needs: read-file
+    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+            manifest: ${{ fromJson(needs.read-file.outputs.FILELIST) }}
+    steps:
+      - uses: actions/checkout@v2   
+      - run: |
+          echo "${{ matrix.manifest }}"
           
         # TODO: Trigger the workflow based on the variable repo
