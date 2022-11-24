@@ -40,8 +40,9 @@ jobs:
       
       - name: Save file contents
         run: |
-          for x in ${{ steps.read_file.outputs.contents }}; do
-            echo "$x"
+          for x in ${{ steps.read_file.outputs.contents }}; 
+          do
+          echo "$x"
           done
        
         # echo ::set-output name=arr::${arr[@]}
