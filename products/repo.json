@@ -6,7 +6,12 @@
   },
   {
     "name": "repo 2",
-    "repoName": "repo-1",
+    "repoName": "repo-2",
+    "version": "v1.0.0"
+  },
+  {
+    "name": "repo 3",
+    "repoName": "repo-2",
     "version": "v1.0.0"
   }
 ]

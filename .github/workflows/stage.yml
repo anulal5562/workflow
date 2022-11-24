@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  DAY_OF_WEEK: |
+    - value: {}
+
 jobs:
   list-products:
     runs-on: ubuntu-latest
@@ -23,7 +27,7 @@ jobs:
         matrix:
             manifest: ${{ fromJson(needs.list-products.outputs.matrix) }}
     outputs:
-      matrix-json: ${{ steps.read_file.outputs.matrix }}
+      matrix-json: ${{ steps.read_file.outputs.contents }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -35,7 +39,13 @@ jobs:
           path: ${{ matrix.manifest }}
       
       - name: Save file contents
-        run: echo "::set-output name=matrix::${{steps.read_file.outputs.contents}}"
+        run: |
+            MY_STRING=$(cat << EOF
+            steps.read_file.outputs.contents
+            EOF
+            )
+            echo "::set-output name=content::$MY_STRING"
+        # run: echo "::set-output name=matrix-json::${{steps.read_file.outputs.contents}}"
 
       - name: File contents
         run: echo "${{ steps.read_file.outputs.contents }}"
