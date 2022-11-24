@@ -40,10 +40,10 @@ jobs:
       
       - name: Save file contents
         run: |
-          IFS="," read -a myarray <<< ${{ fromJson(steps.read_file.outputs.contents) }}
-          for i in "${myarray[@]}"; do
-            echo ${{fromJson(steps.read_file.outputs.contents)}}
+          for x in ${{ fromJson(steps.read_file.outputs.contents) }}; do
+            echo "$x"
           done
+       
         # echo ::set-output name=arr::${arr[@]}
         # run: echo "::set-output name=matrix-json::${{concat(somevar, 1)}}"
         #runs-on: ${{ concat(somevar, steps.read_file.outputs.contents) }}
