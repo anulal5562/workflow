@@ -39,7 +39,15 @@ jobs:
           path: ${{ matrix.manifest }}
       
       - name: Save file contents
-        run: echo "::set-output name=matrix-json::${{steps.read_file.outputs.contents}}"
+        run: |
+            MY_STRING=$(cat << EOF
+            first line
+            second line
+            third line
+            EOF
+            )
+            echo "::set-output name=content::$MY_STRING"
+        # run: echo "::set-output name=matrix-json::${{steps.read_file.outputs.contents}}"
 
       - name: File contents
         run: echo "${{ steps.read_file.outputs.contents }}"
