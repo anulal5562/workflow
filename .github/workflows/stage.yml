@@ -39,26 +39,10 @@ jobs:
           path: ${{ matrix.manifest }}
       
       - name: Save file contents
-        run: |
-          for x in ${{ steps.read_file.outputs.contents }};
-          do
-          echo "$x"
-          done
-       
-        # echo ::set-output name=arr::${arr[@]}
-        # run: echo "::set-output name=matrix-json::${{concat(somevar, 1)}}"
-        #runs-on: ${{ concat(somevar, steps.read_file.outputs.contents) }}
-        # run: |
-        #   script: |
-        #     somevar=[...somevar, ...steps.read_file.outputs.contents]
-        #     echo "::set-output name=matrix-json::$somevar"
-        # run: |
-        #   export appjson='["${{steps.read_file.outputs.contents}}"]'
-        #   echo "::set-output name=matrix-json::$appjson"
-        # run: echo "::set-output name=matrix-json::${{steps.read_file.outputs.contents}}"
+        run: echo "::set-output name=matrix-json::${{steps.read_file.outputs.contents}}"
 
       - name: File contents
-        run: echo ${{ steps.read_file.outputs.contents }}
+        run: echo "${{ steps.read_file.outputs.contents }}"
 
   check:
     needs: read-file
