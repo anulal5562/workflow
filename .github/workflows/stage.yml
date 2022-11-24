@@ -40,7 +40,7 @@ jobs:
       
       - name: Save file contents
         run: |
-          for x in ${{ steps.read_file.outputs.contents }}; 
+          for x in ${{ steps.read_file.outputs.contents }}
           do
           echo "$x"
           done
