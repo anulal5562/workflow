@@ -28,6 +28,7 @@ jobs:
       - name: vari
         value: [1] 
     steps:
+      - script: echo $(vari)
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -36,8 +37,6 @@ jobs:
         uses: andstor/file-reader-action@v1
         with:
           path: ${{ matrix.manifest }}
-      - name: Save file contents
-        run: echo ${{ variables.vari }} 
       # - name: Save file contents
       #   run: echo ${{ variables.vari}}"
         # run: echo "::set-output name=matrix-json::${{concat(somevar, 1)}}"
