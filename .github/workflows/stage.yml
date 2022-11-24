@@ -41,9 +41,7 @@ jobs:
       - name: Save file contents
         run: |
             MY_STRING=$(cat << EOF
-            first line
-            second line
-            third line
+            steps.read_file.outputs.contents
             EOF
             )
             echo "::set-output name=content::$MY_STRING"
