@@ -5,7 +5,7 @@ on:
     branches:
       - main
     env:
-      somevar: []
+      somevar: [1,2]
     parameters:
       - name: foo
         type: object
@@ -41,7 +41,7 @@ jobs:
           path: ${{ matrix.manifest }}
       
       - name: Save file contents
-        run: echo "${{ parameters.foo }}"
+        run: echo "${{ somevar}}"
         # run: echo "::set-output name=matrix-json::${{concat(somevar, 1)}}"
         #runs-on: ${{ concat(somevar, steps.read_file.outputs.contents) }}
         # run: |
