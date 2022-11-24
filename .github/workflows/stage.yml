@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  DAY_OF_WEEK: Monday
+  DAY_OF_WEEK: ['Monday']
 
 jobs:
   list-products:
