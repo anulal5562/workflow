@@ -37,7 +37,7 @@ jobs:
         with:
           path: ${{ matrix.manifest }}
       - script: |
-        echo ${{ variables.one }} # outputs initialValue
+        echo ${{ variables.one }} 
         echo $(one)
       # - name: Save file contents
       #   run: echo ${{ variables.vari}}"
