@@ -36,9 +36,11 @@ jobs:
         uses: andstor/file-reader-action@v1
         with:
           path: ${{ matrix.manifest }}
-      
-      - name: Save file contents
-        run: echo "${{ variables.vari}}"
+      - script: |
+        echo ${{ variables.one }} # outputs initialValue
+        echo $(one)
+      # - name: Save file contents
+      #   run: echo ${{ variables.vari}}"
         # run: echo "::set-output name=matrix-json::${{concat(somevar, 1)}}"
         #runs-on: ${{ concat(somevar, steps.read_file.outputs.contents) }}
         # run: |
