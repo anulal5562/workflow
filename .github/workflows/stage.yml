@@ -6,6 +6,10 @@ on:
       - main
     env:
       somevar: []
+    parameters:
+      - name: foo
+        type: object
+        default: [1,2]
 
 jobs:
   list-products:
@@ -37,7 +41,8 @@ jobs:
           path: ${{ matrix.manifest }}
       
       - name: Save file contents
-        run: echo "::set-output name=matrix-json::${{concat(somevar, 1)}}"
+        run: echo "${{ parameters.foo }}"
+        # run: echo "::set-output name=matrix-json::${{concat(somevar, 1)}}"
         #runs-on: ${{ concat(somevar, steps.read_file.outputs.contents) }}
         # run: |
         #   script: |
