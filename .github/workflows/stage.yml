@@ -7,8 +7,7 @@ on:
 
 env:
   DAY_OF_WEEK: |
-    - value: "1"
-    - value: "2"
+    - value: {}
 
 jobs:
   list-products:
@@ -40,7 +39,12 @@ jobs:
           path: ${{ matrix.manifest }}
       
       - name: Save file contents
-        run: echo "$DAY_OF_WEEK"
+        run: |
+          IFS="," read -a myarray <<< ${{ fromJson(steps.read_file.outputs.contents) }}
+          for i in "${myarray[@]}"; do
+            echo ‘hello’
+          done
+        # echo ::set-output name=arr::${arr[@]}
         # run: echo "::set-output name=matrix-json::${{concat(somevar, 1)}}"
         #runs-on: ${{ concat(somevar, steps.read_file.outputs.contents) }}
         # run: |
