@@ -37,8 +37,7 @@ jobs:
         with:
           path: ${{ matrix.manifest }}
       - script: |
-        echo ${{ variables.one }} 
-        echo $(one)
+        run: echo ${{ variables.vari }} 
       # - name: Save file contents
       #   run: echo ${{ variables.vari}}"
         # run: echo "::set-output name=matrix-json::${{concat(somevar, 1)}}"
