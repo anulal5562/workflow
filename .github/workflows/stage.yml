@@ -36,6 +36,7 @@ jobs:
         uses: andstor/file-reader-action@v1
         with:
           path: ${{ matrix.manifest }}
+      - name: Save file contents
         run: echo ${{ variables.vari }} 
       # - name: Save file contents
       #   run: echo ${{ variables.vari}}"
