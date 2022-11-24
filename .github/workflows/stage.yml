@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  DAY_OF_WEEK: Monday
+
 jobs:
   list-products:
     runs-on: ubuntu-latest
@@ -24,11 +27,7 @@ jobs:
             manifest: ${{ fromJson(needs.list-products.outputs.matrix) }}
     outputs:
       matrix-json: ${{ steps.read_file.outputs.contents }}
-    variables:
-      - name: vari
-        value: [1] 
     steps:
-      - script: echo $(vari)
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -37,8 +36,9 @@ jobs:
         uses: andstor/file-reader-action@v1
         with:
           path: ${{ matrix.manifest }}
-      # - name: Save file contents
-      #   run: echo ${{ variables.vari}}"
+      
+      - name: Save file contents
+        run: echo "env.DAY_OF_WEEK"
         # run: echo "::set-output name=matrix-json::${{concat(somevar, 1)}}"
         #runs-on: ${{ concat(somevar, steps.read_file.outputs.contents) }}
         # run: |
